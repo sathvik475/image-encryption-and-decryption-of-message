@@ -96,3 +96,12 @@ Button(frame4, text="Show Data", width=10, height=2, font="arial 14 bold", comma
 Label(frame4, text="Picture, Image, Photo File", bg="#2f4155", fg="yellow").place(x=20, y=5)
 
 root.mainloop()
+
+
+
+
+
+
+
+
+# in the above code add an authtication to a mail id with otp when we press the button show message
