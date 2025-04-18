@@ -33,12 +33,23 @@ def Hide():
         secret = lsb.hide(filename, message)
         secret.save("hidden.png")
 
+from tkinter import simpledialog, messagebox
+
 def Show():
     global filename
     if filename:  # Ensure the filename exists
-        clear_message = lsb.reveal(filename)
-        text1.delete(1.0, END)
-        text1.insert(END, clear_message)
+        # Ask the user to enter the passcode
+        code = simpledialog.askstring("Authentication Required", "Enter the passcode:")
+        if code == "1234":
+            clear_message = lsb.reveal(filename)
+            if clear_message:
+                text1.delete(1.0, END)
+                text1.insert(END, clear_message)
+            else:
+                messagebox.showerror("Error", "No hidden message found.")
+        else:
+            messagebox.showerror("Authentication Failed", "Incorrect passcode. Access denied.")
+
 
 def save():
     global filename
@@ -96,12 +107,3 @@ Button(frame4, text="Show Data", width=10, height=2, font="arial 14 bold", comma
 Label(frame4, text="Picture, Image, Photo File", bg="#2f4155", fg="yellow").place(x=20, y=5)
 
 root.mainloop()
-
-
-
-
-
-
-
-
-# in the above code add an authtication to a mail id with otp when we press the button show message
